@@ -1,0 +1,11 @@
+.avatar {
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7f1ff;
+  color: var(--bs-primary);
+  font-size: 2rem;
+  font-weight: 800;
+}

@@ -1,0 +1,54 @@
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body p-5">
+          <div class="avatar mx-auto mb-3">L</div>
+          <h3 class="fw-bold">{{ usuario?.name }}</h3>
+          <p class="text-secondary">{{ usuario?.email }}</p>
+          <a routerLink="/publicar" class="btn btn-primary w-100">Nova publicação</a>
+          <button type="button" class="btn btn-outline-secondary w-100 mt-2" (click)="sair()">Sair</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <h1 class="fw-bold mb-4">Meu perfil</h1>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="text-secondary">Publicações</div>
+              <div class="display-6 fw-bold">{{ publicacoes }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="text-secondary">Matches</div>
+              <div class="display-6 fw-bold">{{ matches }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h5 class="fw-bold">Informações da conta</h5>
+          <hr>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-secondary">Nome</div>
+            <div class="col-sm-8">{{ usuario?.name }}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 text-secondary">E-mail</div>
+            <div class="col-sm-8">{{ usuario?.email }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

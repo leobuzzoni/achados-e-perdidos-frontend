@@ -1,0 +1,4 @@
+.detail-image {
+  max-height: 560px;
+  object-fit: cover;
+}

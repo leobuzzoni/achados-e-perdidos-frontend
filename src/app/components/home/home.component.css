@@ -1,0 +1,5 @@
+.hero {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+}

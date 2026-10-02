@@ -1,0 +1,73 @@
+<section class="container py-5">
+  <div class="mb-4">
+    <h1 class="fw-bold">Explorar objetos</h1>
+    <p class="text-secondary">Encontre publicações de objetos perdidos e encontrados.</p>
+  </div>
+
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <label class="form-label">Buscar</label>
+          <input
+            class="form-control"
+            type="search"
+            [(ngModel)]="busca"
+            placeholder="Ex.: mochila, carteira, biblioteca">
+        </div>
+
+        <div class="col-md-3 col-lg-3">
+          <label class="form-label">Tipo</label>
+          <select class="form-select" [(ngModel)]="tipo">
+            <option value="TODOS">Todos</option>
+            <option value="PERDIDO">Perdidos</option>
+            <option value="ENCONTRADO">Encontrados</option>
+          </select>
+        </div>
+
+        <div class="col-md-3 col-lg-3">
+          <label class="form-label">Categoria</label>
+          <select class="form-select" [(ngModel)]="categoria">
+            <option *ngFor="let item of categorias" [value]="item">
+              {{ item === 'TODAS' ? 'Todas' : item }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4" *ngIf="filtrados.length; else semResultados">
+    <div class="col-md-6 col-lg-4" *ngFor="let objeto of filtrados">
+      <div class="card h-100 border-0 shadow-sm">
+        <img [src]="objeto.imageUrls[0] | imageUrl" [alt]="objeto.title" class="card-img-top object-image">
+
+        <div class="card-body">
+          <div class="d-flex justify-content-between gap-2 mb-2">
+            <span
+              class="badge"
+              [class.text-bg-danger]="objeto.type === 'PERDIDO'"
+              [class.text-bg-success]="objeto.type === 'ENCONTRADO'">
+              {{ objeto.type === 'PERDIDO' ? 'Perdido' : 'Encontrado' }}
+            </span>
+            <span class="badge text-bg-light">{{ objeto.category }}</span>
+          </div>
+
+          <h5 class="fw-semibold">{{ objeto.title }}</h5>
+          <p class="text-secondary small">{{ objeto.locationDescription }}</p>
+
+          <a [routerLink]="['/objetos', objeto.id]" class="btn btn-outline-primary w-100">
+            Ver detalhes
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #semResultados>
+    <div class="alert alert-light border text-center py-5">
+      <h5>Nenhum objeto encontrado</h5>
+      <p class="text-secondary mb-0">Tente alterar os filtros ou a busca.</p>
+    </div>
+  </ng-template>
+</section>

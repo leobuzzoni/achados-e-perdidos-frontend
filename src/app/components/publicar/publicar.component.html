@@ -1,0 +1,90 @@
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-xl-8">
+      <div class="mb-4">
+        <h1 class="fw-bold">Publicar objeto</h1>
+        <p class="text-secondary">Informe os dados do objeto para aumentar as chances de encontrar um match.</p>
+      </div>
+
+      <div *ngIf="erro" class="alert alert-danger">{{ erro }}</div>
+      <div *ngIf="enviado" class="alert alert-success">
+        Publicação criada com sucesso! Redirecionando...
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="publicar()" class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-lg-5">
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Tipo de publicação</label>
+            <div class="btn-group w-100" role="group">
+              <input class="btn-check" type="radio" id="perdido" value="PERDIDO" formControlName="type">
+              <label class="btn btn-outline-danger" for="perdido">Objeto perdido</label>
+
+              <input class="btn-check" type="radio" id="encontrado" value="ENCONTRADO" formControlName="type">
+              <label class="btn btn-outline-success" for="encontrado">Objeto encontrado</label>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Título</label>
+              <input class="form-control" formControlName="title" placeholder="Ex.: Mochila preta com chaveiro azul">
+              <div class="invalid-feedback d-block" *ngIf="form.controls.title.touched && form.controls.title.invalid">
+                Informe o título (máximo de 150 caracteres).
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Categoria</label>
+              <select class="form-select" formControlName="category">
+                <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Cor</label>
+              <input class="form-control" formControlName="color" placeholder="Ex.: Preto">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Data do ocorrido</label>
+              <input class="form-control" type="date" formControlName="occurredAt">
+              <div class="invalid-feedback d-block" *ngIf="form.controls.occurredAt.touched && form.controls.occurredAt.invalid">
+                Informe a data do ocorrido.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Local</label>
+              <input class="form-control" formControlName="locationDescription" placeholder="Ex.: Prédio 31">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Endereço/localização</label>
+              <input class="form-control" formControlName="locationAddress" placeholder="Ex.: Rua, prédio ou endereço">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Descrição</label>
+              <textarea class="form-control" rows="5" formControlName="description"
+                placeholder="Descreva detalhes que possam ajudar a identificar o objeto."></textarea>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Foto</label>
+              <input class="form-control" type="file" accept="image/jpeg,image/png,image/webp" (change)="selecionarImagem($event)">
+              <div class="form-text">
+                {{ imagemNome || 'Opcional. Formatos aceitos: JPEG, PNG ou WEBP (até 10MB).' }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer bg-white border-0 p-4 pt-0">
+          <button class="btn btn-primary btn-lg w-100" type="submit" [disabled]="carregando">
+            {{ carregando ? 'Publicando...' : 'Publicar objeto' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

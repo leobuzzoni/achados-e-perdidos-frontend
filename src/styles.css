@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f8f9fa;
+  color: #212529;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.object-image {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0d6efd 0%, #084298 100%);
+}
+
+.rounded-4 {
+  border-radius: 1rem !important;
+}

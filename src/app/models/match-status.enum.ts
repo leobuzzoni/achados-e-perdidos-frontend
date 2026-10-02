@@ -1,0 +1,5 @@
+export enum MatchStatus {
+  PENDENTE = 'PENDENTE',
+  CONFIRMADO = 'CONFIRMADO',
+  REJEITADO = 'REJEITADO'
+}
