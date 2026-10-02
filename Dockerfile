@@ -8,6 +8,6 @@ RUN npm run build -- --configuration production
 
 #--- Run ---
 FROM nginx:alpine
-COPY --from=build /app/dist/achados-e-perdidos-frontend/browser /usr/share/nginx/html
+COPY --from=build /app/dist/achados-perdidos-angular17-bootstrap/browser /usr/share/nginx/html
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 EXPOSE 80
