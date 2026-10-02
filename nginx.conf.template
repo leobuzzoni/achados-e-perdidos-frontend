@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # upload de imagens (o back aceita até 10MB; o padrão do nginx é 1MB)
+    client_max_body_size 10m;
+
+    # rotas do Angular (refresh em /items/3 não dá 404)
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # tudo que for /api vai para o container do back
+    location /api/ {
+        proxy_pass http://${backend_host}:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
